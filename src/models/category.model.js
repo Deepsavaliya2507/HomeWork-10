@@ -7,8 +7,13 @@ const categorySchema = new mongoose.Schema(
         type: String,
         trim: true,
     },
-    password: {
+    category_types_no: {
+        type: Number,
+        trim: true,
+    },
+    choose_one_category_name: {
         type: String,
+        trim: true,
     },
     is_active: {
         type: Boolean,
@@ -16,19 +21,10 @@ const categorySchema = new mongoose.Schema(
     },
     },
     {
-    timestamps: true,
-    versionKey: false,
+        timestamps: true,
+        versionKey: false,
     }
 );
-
-categorySchema.pre("save", async function (next) {
-    const category = this;
-
-    if (category.isModified("password")) {
-    category.password = bcrypt.hash(category.password, 8);
-    }
-    next();
-});
 
 const category = mongoose.model("categorys", categorySchema);
 module.exports = category;

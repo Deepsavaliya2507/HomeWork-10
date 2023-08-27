@@ -1,66 +1,56 @@
-const User = require("../models/user.model");
+const Category = require("../models/category.model");
 
 /**
- * Create user
+ * Create category
  * @param {object} reqBody
- * @returns {Promise<User>}
+ * @returns {Promise<category>}
  */
-const createUser = async (reqBody) => {
-  return User.create(reqBody);
+const createCategory = async (reqBody) => {
+  return Category.create(reqBody);
 };
 
 /**
- * Get user list
+ * Get category list
  * @param {object} filter
  * @param {object} options
- * @returns {Promise<User>}
+ * @returns {Promise<category>}
  */
-const getUserList = async (filter, options) => {
-  return User.find();
+const getCategoryList = async (filter, options) => {
+  return Category.find();
 };
 
 /**
- * Get user by email
- * @param {string} email
- * @returns {Promise<User>}
+ * Get category details by id
+ * @param {ObjectId} categoryId
+ * @returns {Promise<category>}
  */
-const getUserByEmail = async (email) => {
-  return User.findOne({ email });
+const getCategoryById = async (categoryId) => {
+  return Category.findById(categoryId);
 };
 
 /**
- * Get user details by id
- * @param {ObjectId} userId
- * @returns {Promise<User>}
- */
-const getUserById = async (userId) => {
-  return User.findById(userId);
-};
-
-/**
- * user details update by id
- * @param {ObjectId} userId
+ * category details update by id
+ * @param {ObjectId} categoryId
  * @param {object} updateBody
- * @returns {Promise<User>}
+ * @returns {Promise<category>}
  */
-const updateDetails = async (userId, updateBody) => {
-  return User.findByIdAndUpdate(userId, { $set: updateBody });
+const updateCategoryDetails = async (categoryId, updateBody) => {
+  return Category.findByIdAndUpdate(categoryId, { $set: updateBody });
 };
 
 /**
- * Delete user
- * @param {ObjectId} userId
- * @returns {Promise<User>}
+ * Delete category
+ * @param {ObjectId} categoryId
+ * @returns {Promise<category>}
  */
-const deleteUser = async (userId) => {
-  return User.findByIdAndDelete(userId);
+const deleteCategory = async (categoryId) => {
+  return Category.findByIdAndDelete(categoryId);
 };
 
 module.exports = {
-  createUser,
-  getUserList,
-  getUserById,
-  updateDetails,
-  getUserByEmail,
-  deleteUser,
+  createCategory,
+  getCategoryList,
+  getCategoryById,
+  updateCategoryDetails,
+  deleteCategory,
 };
